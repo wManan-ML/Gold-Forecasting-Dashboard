@@ -6,7 +6,7 @@ A Streamlit-based dashboard for forecasting gold prices using Monte Carlo simula
 
 Access the deployed application here:
 
-**https://gold4cast.streamlit.app**
+[**https://gold4cast.streamlit.app**](https://gld4cast.streamlit.app/)
 
 ## Overview
 
