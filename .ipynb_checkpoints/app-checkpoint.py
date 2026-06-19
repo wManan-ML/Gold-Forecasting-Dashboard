@@ -21,12 +21,10 @@ The project includes:
 
 # Download data
 gld = yf.download("GLD", start="2010-01-01")
-st.write(gld.tail())
-st.write(gld.columns)
-st.write(type(gld["Close"]))
 
 # Current price
-current_price = float(gld["Close"].dropna().iloc[-1])
+# Current price
+current_price = float(gld["Close"]["GLD"].dropna().iloc[-1])
 
 st.metric(
     label="Current GLD Price",
@@ -35,13 +33,16 @@ st.metric(
 
 # Historical chart
 st.subheader("Historical GLD Price")
-st.line_chart(gld["Close"].dropna())
+st.line_chart(gld["Close"]["GLD"].dropna())
 
 # Calculate returns
-gld["Returns"] = gld["Close"].pct_change()
+# Calculate returns
+close_prices = gld["Close"]["GLD"].dropna()
 
-mu = gld["Returns"].mean()
-sigma = gld["Returns"].std()
+returns = close_prices.pct_change().dropna()
+
+mu = returns.mean()
+sigma = returns.std()
 
 # Forecast settings
 days = st.slider(
